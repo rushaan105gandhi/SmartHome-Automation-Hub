@@ -16,17 +16,24 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
+            	.requestMatchers("/public/**").permitAll() // Public paths
+                .requestMatchers("/admin/**").hasRole("ADMIN") //Paths restricted to users with ADMIN roles
                 .anyRequest().authenticated()
             )
-            .httpBasic(withDefaults());
+            
+            .formLogin(formLogin -> 
+            formLogin
+                .loginPage("/custom-login") // Specifies the URL of the custom login page
+                .defaultSuccessUrl("/dashboard") // Redirect to "/dash-board" after successful login
+        )
+            
+            .logout(logout ->
+            logout
+                .permitAll() // Allow all users to perform logout
+        );
+        
+            
         return http.build();
     }
-
-	@Bean
-	public Customizer<HttpBasicConfigurer<HttpSecurity>> withDefaults() {
-		return (httpBasic) -> {};
-	}
-	
-	//141
 	
 }
