@@ -2,11 +2,6 @@ package com.smarthome.springbootproject.models;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-
-import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
