@@ -1,11 +1,10 @@
 package com.smarthome.springbootproject.Controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/home")
+@Controller
+@RequestMapping("/one")
 public class TestController {
 	
 
@@ -13,7 +12,7 @@ public class TestController {
 	@GetMapping("/test")
 	public String firstHandler() 
 	{
-		return "smarthome";
+		return "home";
 	}
 	
 }
